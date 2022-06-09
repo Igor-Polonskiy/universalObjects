@@ -1,3 +1,20 @@
+.taskWrapper {
+    max-width: 900px;
+    margin: auto;
+    border: 1px solid grey;
+}
+
+.textOrder {
+    user-select: none;
+    width: 100%;
+}
+
+.sentences {
+    margin: 20px auto;
+    max-width: 600px;
+    margin: ;
+}
+
 .sentence {
     display: flex;
 }
@@ -12,6 +29,42 @@
     border-radius: 5px;
 }
 
+.rightAnswer {
+    background-color: green
+}
+
+.wrongAnswer {
+    background-color: red
+}
+
 .selected {
     background-color: rgba(0, 255, 255, 0.5);
+}
+
+.checkTask {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.chek_answer {
+    font-size: 24px;
+}
+
+.taskBtn {
+    cursor: pointer !important;
+    transition: all 0.2s ease;
+    box-shadow: -5px -5px 15px #ffffff, 5px 5px 15px #e9ecf4 !important;
+    border: none !important;
+    border-radius: 12px !important;
+    background-color: #0AB7D3 !important;
+    padding: 10px !important;
+    font-size: 26px !important;
+    color: white !important;
+    min-width: 100px !important;
+    margin: 0 !important;
+}
+
+.taskBtn:hover {
+    box-shadow: -5px -5px 15px #b8b7b7, 5px 5px 15px #99999b !important;
 }

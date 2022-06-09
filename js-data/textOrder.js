@@ -4,37 +4,45 @@ const data = [
     ['word1', 'word2', 'word3', 'word4', 'word5'],
     ['word1', 'word2', 'word3', 'word4', 'word5'],
 ]
-const rightData = [
-    ['word1', 'word2', 'word3', 'word4', 'word5'],
-    ['word1', 'word2', 'word3', 'word4', 'word5'],
-    ['word1', 'word2', 'word3', 'word4', 'word5'],
-    ['word1', 'word2', 'word3', 'word4', 'word5'],
-]
+const rightData = data.flat()
 
 const task = document.querySelector('.textOrder')
+const sentences = task.querySelector('.sentences')
+const reloadTaskBtn = task.querySelector('.reloadTask')
+const checkingTaskBtn = task.querySelector('.checkingTask')
+const chek_answerTxt = task.querySelector('.chek_answer')
+const checkTask = task.querySelector('.checkTask')
 let dragingItem
 
-data.forEach(item => {
-    let sentence = document.createElement('div')
-    sentence.classList.add('sentence')
-    sentence.style.position = 'relative'
-    item.sort(() => Math.random() - 0.5).forEach(el => {
-        let word = document.createElement('div')
-        word.classList.add('word')
-        word.innerText = el
-        sentence.append(word)
+function fillSentences() {
+    data.forEach(item => {
+        let sentence = document.createElement('div')
+        sentence.classList.add('sentence')
+        sentence.style.position = 'relative'
+        item.sort(() => Math.random() - 0.5).forEach(el => {
+            let word = document.createElement('div')
+            word.classList.add('word')
+            word.innerText = el
+            sentence.append(word)
+        })
+        sentences.append(sentence)
     })
-    task.append(sentence)
-})
+}
 
-task.addEventListener('pointerdown', (e) => {
-    if (e.target.classList.contains('word')) {
-        mouseDown(e)
-    }
-});
+fillSentences()
+
+
+sentences.addEventListener('pointerdown', mousDownListner);
+
 let targetItem
 let draggingItem;
 let elemBelow;
+
+function mousDownListner(e) {
+    if (e.target.classList.contains('word')) {
+        mouseDown(e)
+    }
+}
 
 function mouseDown(event) {
     if (event.button === 2) return;
@@ -49,8 +57,7 @@ function mouseDown(event) {
         draggingItem.style.zIndex = 100;
 
         event.target.parentElement.append(draggingItem);
-        shiftX = event.clientX - event.target.getBoundingClientRect().left;
-        shiftY = event.clientY - event.target.getBoundingClientRect().top;
+        shiftX = event.target.parentElement.getBoundingClientRect().left + (event.clientX - event.target.getBoundingClientRect().left);
         moveAt(event.pageX);
     }
 
@@ -78,30 +85,7 @@ function mouseDown(event) {
         if (!elemBelow) return;
 
         if (elemBelow.classList.contains('word') && elemBelow.innerText !== draggingItem.innerText) {
-            /* if (event.target.classList.contains('word')) {
-                 event.preventDefault();
 
-                 const activeElement = task.querySelector(`.selected`);
-                 const currentElement = event.target;
-                 const isMoveable = activeElement !== currentElement &&
-                     currentElement.classList.contains(`word`);
-
-                 if (!isMoveable) {
-                     return;
-                 }
-
-                 
-
-                 if (
-                     nextElement &&
-                     activeElement === nextElement.previousElementSibling ||
-                     activeElement === nextElement
-                 ) {
-                     return;
-                 }
-
-                 event.target.parentElement.insertBefore(targetItem, nextElement);
-             }*/
             const nextElement = getNextElement(event.clientX, elemBelow);
             if (draggingItem.parentNode.contains(nextElement)) {
                 draggingItem.parentNode.insertBefore(targetItem, nextElement)
@@ -169,99 +153,32 @@ function mouseDown(event) {
     }
 };
 
+reloadTaskBtn.addEventListener('click', () => {
+    sentences.addEventListener('pointerdown', mousDownListner);
+    sentences.innerHTML = ''
+    fillSentences()
 
-/*function dragWord(word) {
-    // word.
-}
-task.addEventListener(`pointerdown`, (evt) => {
-    if (evt.target.classList.contains('word')) {
+    chek_answerTxt.innerHTML = ''
+    checkTask.style.background = ''
+})
 
-        evt.target.classList.add(`selected`);
-        let clone = evt.target.cloneNode(true);
-        clone.style.position = 'absolute'
+checkingTaskBtn.addEventListener('click', () => {
 
-        evt.target.parentElement.append(clone)
+    winVar = 0
+    let words = task.querySelectorAll('.word')
+    words.forEach((item, index) => {
+        if (item.innerText === rightData[index]) {
+            winVar++
+            item.classList.add('rightAnswer')
+        } else item.classList.add('wrongAnswer')
+    })
 
-
-
+    if (winVar === rightData.length) {
+        chek_answerTxt.innerHTML = '<span>&#128077;</span> Молодец!'
+        checkTask.style.background = 'lightgreen'
+    } else {
+        chek_answerTxt.innerHTML = '<span>&#10060;</span> Попробуй еще!'
+        checkTask.style.background = 'lightpink'
     }
-});
-task.addEventListener(`pointerup`, (evt) => {
-    if (dragingItem) {
-        dragingItem.classList.remove(`selected`);
-    }
-
-});
-
-
-
-const tasksListElement = document.querySelectorAll(`.sentence`);
-const taskElements = task.querySelectorAll(`.word`);
-
-for (const task of taskElements) {
-    task.draggable = true;
-}
-
-task.addEventListener(`dragstart`, (evt) => {
-    if (evt.target.classList.contains('word')) {
-        evt.target.classList.add(`selected`);
-    }
-});
-task.addEventListener(`touchstart`, (evt) => {
-    if (evt.target.classList.contains('word')) {
-        evt.target.classList.add(`selected`);
-    }
-});
-
-
-task.addEventListener(`dragend`, (evt) => {
-    if (evt.target.classList.contains('word')) {
-        evt.target.classList.remove(`selected`);
-    }
-
-});
-task.addEventListener(`touchend`, (evt) => {
-    if (evt.target.classList.contains('word')) {
-        evt.target.classList.remove(`selected`);
-    }
-
-});
-
-
-const getNextElement = (cursorPosition, currentElement) => {
-    const currentElementCoord = currentElement.getBoundingClientRect();
-    const currentElementCenter = currentElementCoord.x + currentElementCoord.width / 2;
-    console.log(cursorPosition, currentElementCenter)
-    let nextElement = (cursorPosition > currentElementCenter) ?
-        currentElement :
-        currentElement.nextElementSibling;
-    return nextElement;
-};
-
-task.addEventListener(`dragover`, (evt) => {
-    if (evt.target.classList.contains('word')) {
-        evt.preventDefault();
-
-        const activeElement = task.querySelector(`.selected`);
-        const currentElement = evt.target;
-        const isMoveable = activeElement !== currentElement &&
-            currentElement.classList.contains(`word`);
-
-        if (!isMoveable) {
-            return;
-        }
-
-        const nextElement = getNextElement(evt.clientX, currentElement);
-
-        if (
-            nextElement &&
-            activeElement === nextElement.previousElementSibling ||
-            activeElement === nextElement
-        ) {
-            return;
-        }
-
-        evt.target.parentElement.insertBefore(activeElement, nextElement);
-    }
-
-});*/
+    sentences.removeEventListener('pointerdown', mousDownListner);
+})
