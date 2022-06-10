@@ -1,8 +1,8 @@
 const data = [
-    ['word1', 'word2222', 'wor3', '4', 'word55555555555'],
-    ['word1', 'word2', 'word3', 'word4', 'word5'],
-    ['word1', 'word2', 'word3', 'word4', 'word5'],
-    ['word1', 'word2', 'word3', 'word4', 'word5'],
+    ['There', 'was', 'not', 'a', 'cooker', 'in', 'the', 'kitchen'],
+    ['There', 'were', 'not', 'any', 'plates', 'in', 'the', 'fridge'],
+    ['There', 'was', 'not', 'any', 'salad', 'on', 'my', 'plate'],
+    ['There', 'were', 'not', 'any', 'children', 'in', 'the', 'living', 'room'],
 ]
 const rightData = data.flat()
 
