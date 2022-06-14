@@ -144,7 +144,7 @@
                 winVar++
             } else {
                 spans[index].parentElement.classList.add('textChanging_wrong')
-
+                return
             }
         })
         console.log(winVar)
