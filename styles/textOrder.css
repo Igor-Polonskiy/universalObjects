@@ -25,6 +25,7 @@
     touch-action: none;
     padding: 0 3px;
     border-radius: 5px;
+    cursor: grab;
 }
 
 .rightAnswer {

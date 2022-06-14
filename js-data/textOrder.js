@@ -53,7 +53,7 @@
             draggingItem = event.target.cloneNode(true)
                 //draggingItem = event.target;
             draggingItem.style.touchAction = 'none'; //ОБЯЗАТЕЛЬНОЕ УСЛОВИЕ(МОЖНО УБРАТЬ И ПРОПИСАТЬ В СТИЛЬ САМОМУ ОБЪЕКТУ) 
-            draggingItem.style.cursor = 'grabbing';
+
             draggingItem.style.position = 'absolute';
             draggingItem.style.zIndex = 100;
 
@@ -62,6 +62,7 @@
             moveAt(event.pageX);
         }
 
+        draggingItem.style.cursor = 'grabbing';
         // ЛИММИТЫ КООРДИНАТ ОГРАНИЧИВАЮЩИЕ ВЫЛЕТ ПЕРЕТАСКИВАЕМОГО ЭЛЕМЕНТА ЗА БЛОК
         //  (ПО УМОЛЧАНИЮ interact_zadanie - РОДИТЕЛЬ ВАШЕГО БЛОКА
         function moveAt(pageX) {
@@ -172,6 +173,7 @@
                 winVar++
                 item.classList.add('rightAnswer')
             } else item.classList.add('wrongAnswer')
+            item.style.cursor = 'default'
         })
 
         if (winVar === rightData.length) {
