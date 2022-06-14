@@ -10,9 +10,11 @@
 .textChanging_sentence {
     box-sizing: border-box;
     display: flex;
+    flex-wrap: wrap;
     margin: 20px auto;
     max-width: 620px;
     border-bottom: 2px solid white;
+    box-shadow: -5px -5px 15px #ffffff, 5px 5px 15px #e9ecf4;
 }
 
 .textChanging_wrong {
