@@ -140,14 +140,15 @@
             spans[index].contentEditable = "false"
             if (item.status === true && item.word === spans[index].innerText) {
                 winVar++
+                spans[index].parentElement.classList.add('textChanging_right')
             } else if (item.status === false && item.rightWord === spans[index].innerText) {
                 winVar++
             } else {
                 spans[index].parentElement.classList.add('textChanging_wrong')
-                return
             }
         })
-        console.log(winVar)
+
+
 
         if (winVar === rightData.length) {
             chek_answerTxt.innerHTML = '<span>&#128077;</span> Молодец!'

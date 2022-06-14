@@ -17,10 +17,10 @@
     box-shadow: -5px -5px 15px #ffffff, 5px 5px 15px #e9ecf4;
 }
 
-.textChanging_wrong {
-    border-bottom: 2px solid red;
-}
-
 .textChanging_right {
     border-bottom: 2px solid lightgreen;
+}
+
+.textChanging_wrong {
+    border-bottom: 2px solid red;
 }
