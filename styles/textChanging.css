@@ -1,0 +1,21 @@
+.textChanging_word {
+    margin: 5px;
+    font-size: 26px;
+    font-weight: 600;
+    touch-action: none;
+    padding: 0 3px;
+    border-radius: 5px;
+}
+
+.textChanging_sentence {
+    margin: 20px auto;
+    max-width: 620px;
+}
+
+.textChanging_wrong {
+    border-bottom: 2px solid red;
+}
+
+.textChanging_right {
+    border-bottom: 2px solid lightgreen;
+}

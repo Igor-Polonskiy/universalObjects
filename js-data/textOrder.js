@@ -183,4 +183,5 @@
         }
         sentences.removeEventListener('pointerdown', mousDownListner);
     })
+
 })()
