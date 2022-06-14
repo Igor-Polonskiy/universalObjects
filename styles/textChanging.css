@@ -8,8 +8,11 @@
 }
 
 .textChanging_sentence {
+    box-sizing: border-box;
+    display: flex;
     margin: 20px auto;
     max-width: 620px;
+    border-bottom: 2px solid white;
 }
 
 .textChanging_wrong {
