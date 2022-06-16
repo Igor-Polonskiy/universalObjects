@@ -1,0 +1,69 @@
+.findCouple_table {
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+}
+
+.findCouple_left,
+.findCouple_right {
+    margin-top: 20px;
+    width: 40%;
+}
+
+.findCouple_item {
+    width: 100%;
+    box-shadow: -5px -5px 15px #ffffff, 5px 5px 15px #e9ecf4;
+    text-align: center;
+    padding: 5px;
+    font-size: 24px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    border: 1px solid white;
+}
+
+.findCouple_svg {
+    z-index: 10;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.findCouple_svg>circle {
+    fill: blue;
+}
+
+.findCouple_svg>line {
+    stroke: blue;
+    stroke-width: 1.5px;
+}
+
+.findCouple_item_active {
+    border: 1px solid blue;
+}
+
+.findCouple_true {
+    border: 1px solid lightgreen;
+}
+
+.findCouple_true_line>circle {
+    fill: lightgreen;
+}
+
+.findCouple_true_line line {
+    stroke: lightgreen;
+}
+
+.findCouple_wrong {
+    border: 1px solid red;
+}
+
+.findCouple_wrong_line>circle {
+    fill: red;
+}
+
+.findCouple_wrong_line>line {
+    stroke: red;
+}
