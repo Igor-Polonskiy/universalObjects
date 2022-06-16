@@ -23,6 +23,12 @@
             translate: 'привидение',
 
         },
+        {
+            id: 5,
+            english: 'I realized that I had forgotten my passport at my place',
+            translate: 'Я понял, что забыл паспорт дома',
+
+        },
 
     ]
     const shufleData = [...data]
